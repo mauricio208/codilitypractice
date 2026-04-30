@@ -1,25 +1,16 @@
 function solution(A) {
     // Implement your solution here
-    // 33% wrong answer
-    const maximumPairs = 1000000000
-    let currentPassing = 0
-    let cumulativePassing = 0
-    let passing = false
+    const maxPairs = 1000000000
+    let carsGoingE = 0
+    let passingPairs = 0
     for(n of A){
-        if(n == 0){
-            passing = true
-            cumulativePassing += currentPassing
-            currentPassing = 0
-            if(cumulativePassing > maximumPairs) return -1
+        if( n == 0){
+            carsGoingE++
         }
-        if(!passing) continue
         if(n == 1){
-            currentPassing += cumulativePassing+1
+            passingPairs += carsGoingE
+            if(passingPairs > maxPairs) return -1
         }
     }
-    if(A[A.length-1] == 1){
-        cumulativePassing += currentPassing
-        if(cumulativePassing > maximumPairs) return -1
-    }
-    return cumulativePassing
+    return passingPairs
 }
